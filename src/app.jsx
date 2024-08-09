@@ -1,7 +1,9 @@
 import './index.css'
-
+import { Toaster } from '@/components/ui/toaster'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import { DashboardPage } from './pages/dashboard'
+import { LoginPage } from './pages/login'
 
 const router = createBrowserRouter([
   {
@@ -10,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/entrar',
-    element: <div>Entrar</div>,
+    element: <LoginPage />,
   },
   {
     path: '/cadastrar',
@@ -19,5 +21,10 @@ const router = createBrowserRouter([
 ])
 
 export function App() {
-  return <RouterProvider router={router} />
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster />
+    </>
+  )
 }
