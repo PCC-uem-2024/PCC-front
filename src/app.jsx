@@ -1,12 +1,23 @@
 import './index.css'
 
-import { Input } from './components/ui/input'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { DashboardPage } from './pages/dashboard'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <DashboardPage />,
+  },
+  {
+    path: '/entrar',
+    element: <div>Entrar</div>,
+  },
+  {
+    path: '/cadastrar',
+    element: <div>Cadastrar</div>,
+  },
+])
 
 export function App() {
-  return (
-    <div className="container">
-      <h1>Hello World</h1>
-      <Input type="text" placeholder="Type something..." />
-    </div>
-  )
+  return <RouterProvider router={router} />
 }
