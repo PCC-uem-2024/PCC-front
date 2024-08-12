@@ -2,6 +2,7 @@ import { Toaster } from '@/components/ui/toaster'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 
+import { CreateAccountPage } from './pages/create-account'
 import { DashboardPage } from './pages/dashboard'
 import { LoginPage } from './pages/login'
 
