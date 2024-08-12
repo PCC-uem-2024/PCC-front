@@ -1,6 +1,6 @@
-import './index.css'
 import { Toaster } from '@/components/ui/toaster'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import './index.css'
 
 import { DashboardPage } from './pages/dashboard'
 import { LoginPage } from './pages/login'
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/cadastrar',
-    element: <div>Cadastrar</div>,
+    element: <CreateAccountPage />,
   },
 ])
 
