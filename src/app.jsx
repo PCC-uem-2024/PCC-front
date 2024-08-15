@@ -1,26 +1,44 @@
 import './index.css'
+import '@fontsource/inter';
 import { Toaster } from '@/components/ui/toaster'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 
-import { DashboardPage } from './pages/dashboard'
+
+import { DashboardAluno } from './pages/dashboard-aluno'
+import { DashboardGeral } from './pages/dashboard-geral'
 import { LoginPage } from './pages/login'
+import { NotFound } from './pages/not-found'
+import { hasRole } from './permissions'
+
+const Dashboard = () => {
+  if(hasRole('aluno')) {
+    return <DashboardAluno />
+  }
+  if(hasRole('geral')) {
+    return <DashboardGeral />
+  }
+}
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <DashboardPage />,
+    element: <Dashboard/>,
   },
   {
-    path: '/entrar',
+    path: '/login',
     element: <LoginPage />,
   },
   {
     path: '/cadastrar',
     element: <div>Cadastrar</div>,
   },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
 ])
-
 export function App() {
+
   return (
     <div className="min-h-screen">
       <header className=" border-b border-slate-200 p-4">
