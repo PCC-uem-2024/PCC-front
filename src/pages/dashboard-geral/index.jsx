@@ -17,7 +17,7 @@ export function DashboardGeral() {
             </div>
             <div>
                 <Tabs defaultValue="solicitacoes" className="w-full">
-                    <TabsList>
+                    <TabsList className="md:w-auto w-full">
                         <TabsTrigger value="solicitacoes">Avaliar solicitações</TabsTrigger>
                         <TabsTrigger value="dados">Meus dados</TabsTrigger>
                     </TabsList>

@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons"
 
@@ -34,9 +35,11 @@ export function AvaliarSolicitacoes() {
             <div className="flex flex-col my-6 gap-1">
                 <div className="flex mb-1 font-black">
                     <div className="hover:underline cursor-pointer">
+                        <Link to={`/`}>
                         <span className="text-xl"> Título: </span> 
                         <span>{solicitacao.titulo}</span> 
-                        <FontAwesomeIcon className="mx-2" icon={faUpRightFromSquare} />
+                        <FontAwesomeIcon className="mx-3" icon={faUpRightFromSquare} />
+                        </Link>
                     </div>
                 </div>
                 <div>
