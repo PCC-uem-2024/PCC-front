@@ -3,7 +3,6 @@ import { Calendar } from '@/components/ui/calendar'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,7 +21,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
@@ -170,12 +168,11 @@ export function CreateAccountPage() {
                           <SelectValue placeholder="Qualificação" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="light">Mestrado</SelectItem>
-                          <SelectItem value="dark">Doutorado</SelectItem>
+                          <SelectItem value="Mestrado">Mestrado</SelectItem>
+                          <SelectItem value="Doutorado">Doutorado</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -185,28 +182,22 @@ export function CreateAccountPage() {
                 control={form.control}
                 name="dob"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Date of birth</FormLabel>
+                  <FormItem className="w-full">
+                    <FormLabel>Data de nascimento</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
-                          <Button
-                            variant={'outline'}
-                            className={cn(
-                              'w-[240px] pl-3 text-left font-normal',
-                              !field.value && 'text-muted-foreground',
-                            )}
-                          >
+                          <Button variant={'outline'} className="w-full">
                             {field.value ? (
                               format(field.value, 'PPP')
                             ) : (
-                              <span>Pick a date</span>
+                              <span>Escolha uma data</span>
                             )}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
+                      <PopoverContent>
                         <Calendar
                           mode="single"
                           selected={field.value}
@@ -218,9 +209,44 @@ export function CreateAccountPage() {
                         />
                       </PopoverContent>
                     </Popover>
-                    <FormDescription>
-                      Your date of birth is used to calculate your age.
-                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex gap-5">
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Senha</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Digite sua senha"
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Senha</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Digite sua senha"
+                        {...field}
+                      />
+                    </FormControl>
+
                     <FormMessage />
                   </FormItem>
                 )}
