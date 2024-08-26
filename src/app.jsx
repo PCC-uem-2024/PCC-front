@@ -1,5 +1,7 @@
 import { Toaster } from '@/components/ui/toaster'
+import '@fontsource/inter'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import './index.css'
 
 import { CreateAccountPage } from './pages/create-account'
@@ -12,15 +14,18 @@ const router = createBrowserRouter([
     element: <DashboardPage />,
   },
   {
-    path: '/entrar',
+    path: '/login',
     element: <LoginPage />,
   },
   {
     path: '/cadastrar',
     element: <CreateAccountPage />,
   },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
 ])
-
 export function App() {
   return (
     <div className="min-h-screen">
