@@ -3,15 +3,26 @@ import '@fontsource/inter'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import './index.css'
-
 import { CreateAccountPage } from './pages/create-account'
-import { DashboardPage } from './pages/dashboard'
+import { DashboardAluno } from './pages/dashboard-aluno'
+import { DashboardGeral } from './pages/dashboard-geral'
 import { LoginPage } from './pages/login'
+import { NotFound } from './pages/not-found'
+import { hasRole } from './permissions'
+
+const Dashboard = () => {
+  if (hasRole('aluno')) {
+    return <DashboardAluno />
+  }
+  if (hasRole('geral')) {
+    return <DashboardGeral />
+  }
+}
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <DashboardPage />,
+    element: <Dashboard />,
   },
   {
     path: '/login',
