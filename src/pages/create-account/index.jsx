@@ -254,7 +254,7 @@ export function CreateAccountPage() {
             </div>
             <div className="flex items-end justify-between">
               <Button type="submit">Criar conta</Button>
-              <Link to="/entrar" className="text-slate-500 hover:underline">
+              <Link to="/login" className="text-slate-500 hover:underline">
                 Fazer login
               </Link>
             </div>
