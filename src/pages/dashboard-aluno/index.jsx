@@ -1,8 +1,8 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import React from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { MeusDados } from '../dashboard-aluno/meus-dados'
 import { MinhasSolicitacoes } from './minhas-solicitacoes'
 import { NovaSolicitacao } from './nova-solicitacao'
-import { MeusDados } from '../dashboard-geral/meus-dados'
 
 export function DashboardAluno() {
   return (
@@ -13,14 +13,19 @@ export function DashboardAluno() {
         </div>
         <div className="my-6">
           <span>
-            Acesse os atalhos do portal para acompanhar o andamento das solicitações!
+            Acesse os atalhos do portal para acompanhar o andamento das
+            solicitações!
           </span>
         </div>
         <div>
           <Tabs defaultValue="minhas-solicitacoes" className="w-full">
             <TabsList className="md:w-auto w-full">
-              <TabsTrigger value="minhas-solicitacoes">Minhas solicitações</TabsTrigger>
-              <TabsTrigger value="nova-solicitacao">Nova solicitação</TabsTrigger>
+              <TabsTrigger value="minhas-solicitacoes">
+                Minhas solicitações
+              </TabsTrigger>
+              <TabsTrigger value="nova-solicitacao">
+                Nova solicitação
+              </TabsTrigger>
               <TabsTrigger value="meus-dados">Meus dados</TabsTrigger>
             </TabsList>
             <TabsContent value="minhas-solicitacoes">
@@ -39,4 +44,4 @@ export function DashboardAluno() {
   )
 }
 
-export default DashboardAluno;
+export default DashboardAluno

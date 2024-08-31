@@ -1,9 +1,9 @@
-import './index.css'
-import '@fontsource/inter';
 import { Toaster } from '@/components/ui/toaster'
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
+import '@fontsource/inter'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-
+import './index.css'
+import { CreateAccountPage } from './pages/create-account'
 import { DashboardAluno } from './pages/dashboard-aluno'
 import { DashboardGeral } from './pages/dashboard-geral'
 import { LoginPage } from './pages/login'
@@ -11,10 +11,10 @@ import { NotFound } from './pages/not-found'
 import { hasRole } from './permissions'
 
 const Dashboard = () => {
-  if(hasRole('aluno')) {
+  if (hasRole('aluno')) {
     return <DashboardAluno />
   }
-  if(hasRole('geral')) {
+  if (hasRole('geral')) {
     return <DashboardGeral />
   }
 }
@@ -22,7 +22,7 @@ const Dashboard = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Dashboard/>,
+    element: <Dashboard />,
   },
   {
     path: '/login',
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/cadastrar',
-    element: <div>Cadastrar</div>,
+    element: <CreateAccountPage />,
   },
   {
     path: '*',
@@ -38,7 +38,6 @@ const router = createBrowserRouter([
   },
 ])
 export function App() {
-
   return (
     <div className="min-h-screen">
       <header className=" border-b border-slate-200 p-4">
