@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     const { email, password } = credentials
 
     try {
-      const response = await api.post('/login', { email, password })
+      const response = await api.post('/auth/login', { email, password })
 
       if (response.ok) {
         const data = await response.json()
