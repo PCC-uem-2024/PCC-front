@@ -32,6 +32,7 @@ export const AuthProvider = ({ children }) => {
           'user',
           JSON.stringify({ email: data.email, role: data.role }),
         )
+        localStorage.setItem('role', data.role)
         setUser({ email: data.email, role: data.role })
         return true
       } else {
