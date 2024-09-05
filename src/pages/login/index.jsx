@@ -95,9 +95,6 @@ export function LoginPage() {
                   'Entrar'
                 )}
               </Button>
-              <Link to="/cadastrar" className="text-slate-500 hover:underline">
-                Criar conta
-              </Link>
             </div>
           </form>
         </Form>
