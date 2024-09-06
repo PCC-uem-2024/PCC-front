@@ -1,6 +1,6 @@
 import { Toaster } from '@/components/ui/toaster'
 import '@fontsource/inter'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
 import './index.css'
 import { CreateAccountPage } from './pages/create-account'
@@ -9,6 +9,21 @@ import { DashboardGeral } from './pages/dashboard-geral'
 import { LoginPage } from './pages/login'
 import { NotFound } from './pages/not-found'
 import { hasRole } from './permissions'
+import { AuthProvider, useAuth } from './hooks/use-auth'
+
+const PrivateRoute = ({ children, allowedRoles }) => {
+  const { user, isLoading } = useAuth()
+
+  if (isLoading) {
+    return <div>Carregando...</div>
+  }
+
+  if (!user || (allowedRoles && !allowedRoles.includes(user.role))) {
+    return <Navigate to="/login" replace />
+  }
+
+  return children
+}
 
 const Dashboard = () => {
   if (hasRole('aluno')) {
@@ -22,7 +37,12 @@ const Dashboard = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute
+        allowedRoles={['aluno', 'geral']}
+        children={<Dashboard />}
+      />
+    ),
   },
   {
     path: '/login',
@@ -30,7 +50,9 @@ const router = createBrowserRouter([
   },
   {
     path: '/cadastrar',
-    element: <CreateAccountPage />,
+    element: (
+      <PrivateRoute allowedRoles={['geral']} children={<CreateAccountPage />} />
+    ),
   },
   {
     path: '*',
@@ -47,8 +69,10 @@ export function App() {
         </div>
       </header>
 
-      <RouterProvider router={router} />
-      <Toaster />
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </AuthProvider>
     </div>
   )
 }

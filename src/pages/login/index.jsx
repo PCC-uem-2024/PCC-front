@@ -12,15 +12,15 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { toast } from '@/components/ui/use-toast'
 import { Link } from 'react-router-dom'
+import { useAuth } from '@/hooks/use-auth'
 
 const FormSchema = z.object({
   email: z.string().email({
     message: 'Digite um e-mail válido',
   }),
-  password: z.string().min(8, {
-    message: 'A senha deve conter pelo menos 8 caracteres.',
+  password: z.string().min(6, {
+    message: 'A senha deve conter pelo menos 6 caracteres.',
   }),
 })
 
@@ -33,15 +33,16 @@ export function LoginPage() {
     },
   })
 
-  function onSubmit(data) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+  const { login, isLoading } = useAuth()
+
+  async function onSubmit(data) {
+    const { email, password } = data
+    try {
+      const response = await login({ email, password })
+      console.log(response.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -87,10 +88,13 @@ export function LoginPage() {
               )}
             />
             <div className="flex items-end justify-between">
-              <Button type="submit">Entrar</Button>
-              <Link to="/cadastrar" className="text-slate-500 hover:underline">
-                Criar conta
-              </Link>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <div className="animate-spin size-4 border-t-2 border-b-2 border-slate-100 rounded-full"></div>
+                ) : (
+                  'Entrar'
+                )}
+              </Button>
             </div>
           </form>
         </Form>
