@@ -30,26 +30,35 @@ import { z } from 'zod'
 
 // import { toast } from '@/components/ui/use-toast'
 
-const FormSchema = z.object({
-  email: z.string().email({
-    message: 'Digite um e-mail válido',
-  }),
-  password: z.string().min(8, {
-    message: 'A senha deve conter pelo menos 8 caracteres.',
-  }),
-  cpf: z.number().min(11, {
-    message: 'O CPF deve conter 11 números',
-  }),
-  name: z.string().min(3, {
-    message: 'O nome deve conter pelo menos 3 caracteres',
-  }),
-  registration: z.string().min(3, {
-    message: 'A matrícula deve conter pelo menos 3 caracteres',
-  }),
-  date: z.string().datetime({
-    message: 'Data inválida',
-  }),
-})
+const FormSchema = z
+  .object({
+    email: z.string().email({
+      message: 'Digite um e-mail válido',
+    }),
+    password: z.string().min(8, {
+      message: 'A senha deve conter pelo menos 8 caracteres.',
+    }),
+    confirmPassword: z.string().min(8, {
+      message: 'A senha deve conter pelo menos 8 caracteres.',
+    }),
+    cpf: z
+      .string()
+      .min(11, { message: 'O CPF deve conter 11 números' })
+      .max(11, { message: 'O CPF deve conter 11 números' }),
+    name: z.string().min(3, {
+      message: 'O nome deve conter pelo menos 3 caracteres',
+    }),
+    registration: z.string().min(3, {
+      message: 'A matrícula deve conter pelo menos 3 caracteres',
+    }),
+    date: z.string().datetime({
+      message: 'Data inválida',
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'As senhas não conferem',
+    path: ['confirmPassword'],
+  })
 
 export function CreateAccountPage() {
   const form = useForm({
@@ -57,6 +66,7 @@ export function CreateAccountPage() {
     defaultValues: {
       email: '',
       password: '',
+      confirmPassword: '',
       cpf: '',
       name: '',
       registration: '',
@@ -235,14 +245,14 @@ export function CreateAccountPage() {
               />
               <FormField
                 control={form.control}
-                name="password"
+                name="confirmPassword"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormLabel>Senha</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
-                        placeholder="Digite sua senha"
+                        placeholder="Confirme sua senha"
                         {...field}
                       />
                     </FormControl>
