@@ -6,7 +6,7 @@ import { MeusDados } from './meus-dados'
 export function DashboardGeral() {
   return (
     <div className="h-dvh flex justify-center mt-8">
-        <div class="w-2/3">
+        <div className="w-2/3">
             <div>
                 <h2 className="text-4xl font-black"> Boas Vindas </h2>
             </div>

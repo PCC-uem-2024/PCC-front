@@ -7,13 +7,15 @@ export function AvaliarSolicitacoes() {
 
     const solicitacoes = [
         {
+            id: 1,
             titulo: "Solicitação 1",
             discente: "Discente 1",
             data_envio: "01/01/2021",
             status: "Pendente",
             tipo_defesa: "Dissertação",
         },
-        {
+        {   
+            id: 2,
             titulo: "Solicitação TESTE DE TAMANHO 2421321321321",
             discente: "Discente 2",
             data_envio: "24/03/2024",
@@ -21,6 +23,7 @@ export function AvaliarSolicitacoes() {
             tipo_defesa: "Dissertação",
         },
         {
+            id: 3,
             titulo: "Solicitação 3",
             discente: "Discente 3",
             data_envio: "13/03/2024",
@@ -35,7 +38,7 @@ export function AvaliarSolicitacoes() {
             <div className="flex flex-col my-6 gap-1">
                 <div className="flex mb-1 font-black">
                     <div className="hover:underline cursor-pointer">
-                        <Link to={`/`}>
+                        <Link to={`/solicitacao/${solicitacao.id}`}>
                         <span className="text-xl"> Título: </span> 
                         <span>{solicitacao.titulo}</span> 
                         <FontAwesomeIcon className="mx-3" icon={faUpRightFromSquare} />
