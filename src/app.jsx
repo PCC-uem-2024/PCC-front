@@ -1,6 +1,11 @@
 import { Toaster } from '@/components/ui/toaster'
 import '@fontsource/inter'
-import { createBrowserRouter, Link, Navigate, RouterProvider } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  Link,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom'
 
 import './index.css'
 import { CreateAccountPage } from './pages/create-account'
@@ -61,11 +66,12 @@ const router = createBrowserRouter([
   },
   {
     path: '/solicitacao/:id',
-    element:
-    <PrivateRoute
-      allowedRoles={['aluno', 'geral']}
-      children={<Solicitacao />}
-    />,
+    element: (
+      <PrivateRoute
+        allowedRoles={['[ROLE_ALUNO]', '[ROLE_ADMIN]']}
+        children={<Solicitacao />}
+      />
+    ),
   },
   {
     path: '*',
