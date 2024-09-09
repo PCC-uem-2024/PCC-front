@@ -24,14 +24,15 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await api.post('/auth/login', { email, password })
 
-      if (response.ok) {
-        const data = await response.json()
+      if (response.status === 200) {
+        const data = response.data
         localStorage.setItem('token', data.token)
         localStorage.setItem('refreshToken', data.refreshToken)
         localStorage.setItem(
           'user',
           JSON.stringify({ email: data.email, role: data.role }),
         )
+        localStorage.setItem('role', data.role)
         setUser({ email: data.email, role: data.role })
         return true
       } else {
@@ -59,6 +60,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token')
     localStorage.removeItem('refreshToken')
     localStorage.removeItem('user')
+    localStorage.removeItem('role')
     setUser(null)
   }
 

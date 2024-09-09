@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/use-auth'
 
 const FormSchema = z.object({
@@ -32,14 +32,19 @@ export function LoginPage() {
       password: '',
     },
   })
-
-  const { login, isLoading } = useAuth()
+  const navigate = useNavigate()
+  const { login, isLoading, user } = useAuth()
+  if (user) {
+    navigate('/')
+  }
 
   async function onSubmit(data) {
     const { email, password } = data
     try {
       const response = await login({ email, password })
-      console.log(response.data)
+      if (response) {
+        navigate('/')
+      }
     } catch (error) {
       console.error(error)
     }

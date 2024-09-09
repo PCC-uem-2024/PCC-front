@@ -11,6 +11,7 @@ import { Solicitacao } from './pages/solicitacao'
 import { NotFound } from './pages/not-found'
 import { hasRole } from './permissions'
 import { AuthProvider, useAuth } from './hooks/use-auth'
+import { Header } from './components/header'
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const { user, isLoading } = useAuth()
@@ -27,10 +28,10 @@ const PrivateRoute = ({ children, allowedRoles }) => {
 }
 
 const Dashboard = () => {
-  if (hasRole('aluno')) {
+  if (hasRole('[ROLE_ALUNO]')) {
     return <DashboardAluno />
   }
-  if (hasRole('geral')) {
+  if (hasRole('[ROLE_ADMIN]')) {
     return <DashboardGeral />
   }
 }
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
     path: '/',
     element: (
       <PrivateRoute
-        allowedRoles={['aluno', 'geral']}
+        allowedRoles={['[ROLE_ADMIN]', '[ROLE_ADMIN]']}
         children={<Dashboard />}
       />
     ),
@@ -52,7 +53,10 @@ const router = createBrowserRouter([
   {
     path: '/cadastrar',
     element: (
-      <PrivateRoute allowedRoles={['geral']} children={<CreateAccountPage />} />
+      <PrivateRoute
+        allowedRoles={['[ROLE_ADMIN]']}
+        children={<CreateAccountPage />}
+      />
     ),
   },
   {
@@ -68,22 +72,15 @@ const router = createBrowserRouter([
     element: <NotFound />,
   },
 ])
+
 export function App() {
   return (
-    <div className="min-h-screen">
-      <header className=" border-b border-slate-200 p-4">
-        <div className="container flex justify-between">
-          <a href="/" className="flex items-center space-x-2">
-            <img src="/pcc-icon.svg" alt="Logo PCC" className="w-16" />
-          </a>
-          <img src="/logo-uem.png" alt="Logo UEM" className="w-40" />
-        </div>
-      </header>
-
-      <AuthProvider>
+    <AuthProvider>
+      <div className="min-h-screen">
+        <Header />
         <RouterProvider router={router} />
         <Toaster />
-      </AuthProvider>
-    </div>
+      </div>
+    </AuthProvider>
   )
 }
