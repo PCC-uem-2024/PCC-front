@@ -1,8 +1,26 @@
-# React + Vite
+# 💻 Sobre o PCC UEM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi desenvolvido pela turma de discentes da disciplina de Tópicos em Tecnologia da Informação e Comunicação, do Bacharel em Informática (UEM) ministrados pela professora Thelma Elita Colanzi Lopes.
 
-Currently, two official plugins are available:
+Trata-se da implementação de um sistema capaz de realizar operações referente ao processo de defesa de dissertaçẽs de mestrado e teses de doutorado, contribuindo para o trabalho dos responsáveis pelo Programa de Pós-graduação em Ciência da Computação (PCC) da Universidade Estadual de Maringá.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚧 Principais Funcionalidades
+
+- Cadastro de alunos (mestrandos ou doutorandos) e professores;
+- Geração de solicitações de avaliação da composição da banca avaliadora;
+- Inserção dos trabalhos em formato _.pdf_;
+- Confirmação de aceite ou recusa da banca cadastrada;
+- Gestão de solicitações pendentes
+
+## 🗣 Tecnologias e Ferramentas
+
+- React + Vite
+- Java
+- Docker
+- AWS Server
+
+## 🛠️ Como executar
+
+```bash
+⏳ Em andamento...
+```
