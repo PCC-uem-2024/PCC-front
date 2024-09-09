@@ -7,18 +7,21 @@ export function MinhasSolicitacoes() {
 
     const solicitacoes = [
         {
+            id: 1,
             titulo: "Tal tal tal",
             data_envio: "24/03/2024",
             status: "Aguardando avaliação do orientador",
             tipo_defesa: "Dissertação de Mestrado",
         },
         {
+            id: 2,
             titulo: "Tal tal tal",
             data_envio: "24/03/2024",
             status: "Aguardando avaliação do orientador",
             tipo_defesa: "Dissertação de Mestrado",
         },
         {
+            id: 3,
             titulo: "Tal tal tal",
             data_envio: "24/03/2024",
             status: "Aguardando avaliação do orientador",
@@ -32,7 +35,7 @@ export function MinhasSolicitacoes() {
             <div key={index} className="flex flex-col my-6 gap-1">
                 <div className="flex mb-1 font-black">
                     <div className="hover:underline cursor-pointer">
-                        <Link to={`/`}>
+                        <Link to={`/solicitacao/${solicitacao.id}`}>    
                         <span className="text-xl"> Título: </span> 
                         <span>{solicitacao.titulo}</span> 
                         <FontAwesomeIcon className="mx-3" icon={faUpRightFromSquare} />

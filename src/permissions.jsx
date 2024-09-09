@@ -1,4 +1,4 @@
 export const hasRole = (role) => {
-    const token = localStorage.getItem('role');
-    return role === token;
-};
+  const permission = localStorage.getItem('role')
+  return role === permission
+}
