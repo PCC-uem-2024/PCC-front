@@ -24,5 +24,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: sudo docker stop $(sudo docker ps -a -q)
+    - run: sudo systemctl stop nginx
     - run: npm ci
     - run: npm run build --if-present
+    - run: sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q) && sudo docker build -t pcc-back /home/ubuntu/uem/PCC-back && sudo docker run -d -p 5000:5000 pcc-back
+    - run: sudo systemctl start nginx
