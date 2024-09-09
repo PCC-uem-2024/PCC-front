@@ -12,7 +12,7 @@ api.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    console.log(token);
+    console.log(`test runner 2: ${token}`);
 
     return config;
   },
