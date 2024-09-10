@@ -16,8 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0
-        ref: main
+        fetch-depth: 0  # please work
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
@@ -25,9 +24,10 @@ jobs:
         cache: 'npm'
     - run: sudo docker stop $(sudo docker ps -a -q)
     - run: sudo systemctl stop nginx
-    - run: git fetch
-    - run: git checkout main
-    - run: git pull origin main
+    - name: att. repositório
+      run: |
+        git fetch --all
+        git reset --hard origin/main
     - run: npm ci
     - run: npm run build --if-present
     - run: sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q) && sudo docker build -t pcc-back /home/ubuntu/uem/PCC-back && sudo docker run -d -p 5000:5000 pcc-back
