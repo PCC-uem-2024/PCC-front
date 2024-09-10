@@ -26,9 +26,9 @@ jobs:
     - run: sudo rm -r /home/ubuntu/uem/PCC-front/dist
     - run: sudo docker stop $(sudo docker ps -a -q)
     - run: sudo systemctl stop nginx
-    - run: git fetch --all
-    - run: git reset --hard origin/main
-    - run: npm ci
-    - run: npm run build --if-present
+    - run: sudo git fetch --all
+    - run: sudo git reset --hard origin/main
+    - run: sudo npm ci
+    - run: sudo npm run build
     - run: sudo docker rm $(sudo docker ps -a -q) && sudo docker rmi $(sudo docker images -a -q) && sudo docker build -t pcc-back /home/ubuntu/uem/PCC-back && sudo docker run -d -p 5000:5000 pcc-back
     - run: sudo systemctl start nginx
