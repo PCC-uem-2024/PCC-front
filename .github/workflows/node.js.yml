@@ -24,6 +24,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: git pull origin main
     - run: sudo docker stop $(sudo docker ps -a -q)
     - run: sudo systemctl stop nginx
     - run: npm ci
