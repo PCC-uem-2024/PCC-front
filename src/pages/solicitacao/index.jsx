@@ -6,10 +6,11 @@ import { Link, useParams } from 'react-router-dom'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ArrowLeft } from 'lucide-react'
 import { useState } from 'react'
+import { DialogRecusa } from './dialog'
 
 export function Solicitacao() {
   const { id } = useParams()
-  const [hasPermission, setHasPermission] = useState(localStorage.getItem('role') === 'geral')
+  const [hasPermission, setHasPermission] = useState(localStorage.getItem('role') === '[ROLE_ADMIN]')
 
   return (
     <div className="flex justify-center mt-8 pb-5">
@@ -132,9 +133,7 @@ export function Solicitacao() {
             </div>
             {hasPermission && (
               <div className="flex justify-between gap-5">
-                <Button className="w-2/4 bg-red-500 hover:bg-red-700">
-                  Recusar
-                </Button>
+              <DialogRecusa></DialogRecusa>
                 <Button className="w-2/4 bg-green-500 hover:bg-green-700">
                   Aceitar
                 </Button>
